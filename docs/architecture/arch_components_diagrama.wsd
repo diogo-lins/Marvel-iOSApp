@@ -1,0 +1,49 @@
+@startuml "MarvelHeros Architecture"
+
+node "App" as App {
+    folder "Lifecycle Screen" {
+        interface PersistenceService
+        interface RemoteService
+        [ViewController]
+        [Interactor]
+        [Presenter]
+        [RemoteWorker]
+        [PersistenceWorker]
+        [Router]
+    }
+
+    [ViewController]..>[Interactor]
+    [ViewController]..>[Router]
+    [Interactor]..>[Presenter]
+    [Presenter]..>[ViewController]
+    [Interactor]..>[RemoteWorker]
+    [Interactor]..>[PersistenceWorker]
+    [RemoteWorker]..>[RemoteService]
+    [PersistenceWorker]..>[PersistenceService]
+
+
+    node "Storage" as Storage {
+        [PersistenceDataAdapter]
+        [StorageHeroRepository]
+
+        [PersistenceDataAdapter]..>[StorageHeroRepository]
+    }
+
+    node "HeroRepository" as HeroRepository {
+        [HeroDataAdapter]
+        [ApiController]
+
+        [HeroDataAdapter]..>[ApiController]
+    }
+
+    database "Disk" {
+        [HeroDataModel]
+    }
+
+    PersistenceService -- [PersistenceDataAdapter]
+    RemoteService -- [HeroDataAdapter]
+    [StorageHeroRepository] ..> [HeroDataModel]
+    [ApiController] ..> HTTP
+}
+
+@enduml

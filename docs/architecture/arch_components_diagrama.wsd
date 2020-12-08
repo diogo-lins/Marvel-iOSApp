@@ -2,25 +2,25 @@
 
 node "App" as App {
     folder "Lifecycle Screen" {
-        interface PersistenceService
-        interface RemoteService
         [ViewController]
         [Interactor]
         [Presenter]
         [RemoteWorker]
         [PersistenceWorker]
         [Router]
+
+        [ViewController]..>[Interactor]
+        [ViewController]..>[Router]
+        [Interactor]..>[Presenter]
+        [Presenter]..>[ViewController]
+        [Interactor]..>[RemoteWorker]
+        [Interactor]..>[PersistenceWorker]
     }
 
-    [ViewController]..>[Interactor]
-    [ViewController]..>[Router]
-    [Interactor]..>[Presenter]
-    [Presenter]..>[ViewController]
-    [Interactor]..>[RemoteWorker]
-    [Interactor]..>[PersistenceWorker]
-    [RemoteWorker]..>[RemoteService]
-    [PersistenceWorker]..>[PersistenceService]
-
+    node "Service" as Service {
+        interface PersistenceService
+        interface RemoteService
+    }
 
     node "Storage" as Storage {
         [PersistenceDataAdapter]
@@ -29,21 +29,25 @@ node "App" as App {
         [PersistenceDataAdapter]..>[StorageHeroRepository]
     }
 
-    node "HeroRepository" as HeroRepository {
+    node "HeroNetworking" as HeroNetworking {
         [HeroDataAdapter]
-        [ApiController]
+        interface APIRequest
+        [APIController]
 
-        [HeroDataAdapter]..>[ApiController]
+        [HeroDataAdapter] ..> APIRequest
+        APIRequest -- [APIController]
     }
 
     database "Disk" {
         [HeroDataModel]
     }
 
+    [RemoteWorker]..>[RemoteService]
+    [PersistenceWorker]..>[PersistenceService]
     PersistenceService -- [PersistenceDataAdapter]
     RemoteService -- [HeroDataAdapter]
     [StorageHeroRepository] ..> [HeroDataModel]
-    [ApiController] ..> HTTP
+    [APIController] ..> HTTP
 }
 
 @enduml

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,9 @@
 		9317A33E257E969600E66497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9317A33C257E969600E66497 /* LaunchScreen.storyboard */; };
 		9317A349257E969600E66497 /* HeroesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9317A348257E969600E66497 /* HeroesAppTests.swift */; };
 		9317A354257E969600E66497 /* HeroesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9317A353257E969600E66497 /* HeroesAppUITests.swift */; };
+		933B9B512580F33800D62E45 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B502580F33800D62E45 /* Quick */; };
+		933B9B572580F39D00D62E45 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B562580F39D00D62E45 /* Nimble */; };
+		933B9B632580F5D700D62E45 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B622580F5D700D62E45 /* Moya */; };
 		939F3E87257ED494001714F3 /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939F3E86257ED494001714F3 /* RemoteService.swift */; };
 		939F3E8C257ED4BD001714F3 /* HeroDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939F3E8B257ED4BD001714F3 /* HeroDataAdapter.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				933B9B632580F5D700D62E45 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				933B9B512580F33800D62E45 /* Quick in Frameworks */,
+				933B9B572580F39D00D62E45 /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +109,9 @@
 		9317A330257E968E00E66497 /* HeroesApp */ = {
 			isa = PBXGroup;
 			children = (
+				9317A33F257E969600E66497 /* Info.plist */,
+				9317A33A257E969600E66497 /* Assets.xcassets */,
 				939F3E82257ED3E2001714F3 /* App */,
-				939F3E81257ED3AC001714F3 /* Resources */,
 				9317A331257E968E00E66497 /* AppDelegate.swift */,
 				9317A333257E968E00E66497 /* SceneDelegate.swift */,
 				9317A335257E968E00E66497 /* ViewController.swift */,
@@ -130,15 +137,6 @@
 				9317A355257E969600E66497 /* Info.plist */,
 			);
 			path = HeroesAppUITests;
-			sourceTree = "<group>";
-		};
-		939F3E81257ED3AC001714F3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				9317A33A257E969600E66497 /* Assets.xcassets */,
-				9317A33F257E969600E66497 /* Info.plist */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		939F3E82257ED3E2001714F3 /* App */ = {
@@ -190,6 +188,9 @@
 			dependencies = (
 			);
 			name = HeroesApp;
+			packageProductDependencies = (
+				933B9B622580F5D700D62E45 /* Moya */,
+			);
 			productName = HeroesApp;
 			productReference = 9317A32E257E968E00E66497 /* HeroesApp.app */;
 			productType = "com.apple.product-type.application";
@@ -208,6 +209,10 @@
 				9317A346257E969600E66497 /* PBXTargetDependency */,
 			);
 			name = HeroesAppTests;
+			packageProductDependencies = (
+				933B9B502580F33800D62E45 /* Quick */,
+				933B9B562580F39D00D62E45 /* Nimble */,
+			);
 			productName = HeroesAppTests;
 			productReference = 9317A344257E969600E66497 /* HeroesAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -244,7 +249,6 @@
 					};
 					9317A343257E969600E66497 = {
 						CreatedOnToolsVersion = 12.1;
-						TestTargetID = 9317A32D257E968E00E66497;
 					};
 					9317A34E257E969600E66497 = {
 						CreatedOnToolsVersion = 12.1;
@@ -261,6 +265,11 @@
 				Base,
 			);
 			mainGroup = 9317A325257E968E00E66497;
+			packageReferences = (
+				933B9B4F2580F33800D62E45 /* XCRemoteSwiftPackageReference "Quick" */,
+				933B9B552580F39D00D62E45 /* XCRemoteSwiftPackageReference "Nimble" */,
+				933B9B612580F5D700D62E45 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 9317A32F257E968E00E66497 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -521,7 +530,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3HPSJRZMQU;
 				INFOPLIST_FILE = HeroesAppTests/Info.plist;
@@ -535,7 +543,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeroesApp.app/HeroesApp";
 			};
 			name = Debug;
 		};
@@ -543,7 +550,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3HPSJRZMQU;
 				INFOPLIST_FILE = HeroesAppTests/Info.plist;
@@ -557,7 +563,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeroesApp.app/HeroesApp";
 			};
 			name = Release;
 		};
@@ -641,6 +646,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		933B9B4F2580F33800D62E45 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		933B9B552580F39D00D62E45 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		933B9B612580F5D700D62E45 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		933B9B502580F33800D62E45 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 933B9B4F2580F33800D62E45 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		933B9B562580F39D00D62E45 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 933B9B552580F39D00D62E45 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		933B9B622580F5D700D62E45 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 933B9B612580F5D700D62E45 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9317A326257E968E00E66497 /* Project object */;
 }

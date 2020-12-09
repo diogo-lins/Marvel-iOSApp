@@ -9,11 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var adapter: HeroDataAdapter?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        adapter = HeroDataAdapter()
+        adapter?.getCharacter(with: 10, and: 1)
     }
-
-
 }
 

@@ -29,7 +29,7 @@ node "App" as App {
         [PersistenceDataAdapter]..>[StorageHeroRepository]
     }
 
-    node "HeroNetworking" as HeroNetworking {
+    node "Networking" as Networking {
         [HeroDataAdapter]
         interface APIRequest
         [APIController]

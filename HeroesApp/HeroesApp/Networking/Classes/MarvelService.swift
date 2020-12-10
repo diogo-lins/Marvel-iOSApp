@@ -15,7 +15,8 @@ enum MarvelService {
 
 extension MarvelService: TargetType {
     var baseURL: URL {
-        return URL(string: "https://gateway.marvel.com")!
+        guard let apiURL = Bundle.plistURLValue(with: "BaseAPIUrl") else { fatalError("Base URL API error") }
+        return apiURL
     }
 
     var path: String {
@@ -38,15 +39,15 @@ extension MarvelService: TargetType {
     var task: Task {
         switch self {
         case .getCharacters(let limit, let offset):
-            return .requestParameters(parameters: ["ts": "\(Date().timeIntervalSince1970)",
-                                                   "hash": "asdasdasda23213123123sdasdasdasda12312312321sdasdasdasd",
-                                                   "apikey": "9ac938891e63bf8f38ff77e4a2ed808e",
+            return .requestParameters(parameters: ["ts": KeyAccessBuilder.getTimeStamp(),
+                                                   "hash": KeyAccessBuilder.getHash(),
+                                                   "apikey": KeyAccessBuilder.getPublicKey(),
                                                    "limit": limit,
                                                    "offset": offset], encoding: URLEncoding.queryString)
         case .getCharracterDetails(let id):
             return .requestParameters(parameters: ["characterId": id,
-                                                   "hash": "asdasdasda23213123123sdasdasdasda12312312321sdasdasdasd",
-                                                   "apikey": "9ac938891e63bf8f38ff77e4a2ed808e"], encoding: URLEncoding.queryString)
+                                                   "hash": KeyAccessBuilder.getHash(),
+                                                   "apikey": KeyAccessBuilder.getPublicKey()], encoding: URLEncoding.queryString)
         }
     }
 

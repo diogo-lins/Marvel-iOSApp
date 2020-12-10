@@ -10,10 +10,10 @@ import Moya
 
 struct MarvelAPIController: APIRequest {
 
-    var provider: MoyaProvider<MarvelService>
+    private let provider: MoyaProvider<MarvelService>
 
-    init() {
-        self.provider = MoyaProvider<MarvelService>()
+    init(provider: MoyaProvider<MarvelService> = MoyaProvider<MarvelService>()) {
+        self.provider = provider
     }
 
     func getCharacter(with limit: Int, and offset: Int) {

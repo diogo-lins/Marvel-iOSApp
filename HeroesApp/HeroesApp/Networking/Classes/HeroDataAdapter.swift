@@ -15,11 +15,7 @@ struct HeroDataAdapter: RemoteService {
         self.apiRequest = apiRequest
     }
 
-    func getCharacter(with limit: Int, and offset: Int) {
-        apiRequest.getCharacter(with: limit, and: offset)
-    }
-
-    func getCharacterDetails(with id: Int) {
-        apiRequest.getCharacterDetails(with: id)
+    func getCharacters(with limit: Int, and offset: Int) {
+        apiRequest.getCharacters(with: limit, and: offset)
     }
 }

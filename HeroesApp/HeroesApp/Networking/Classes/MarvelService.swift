@@ -10,7 +10,6 @@ import Moya
 
 enum MarvelService {
     case getCharacters(limit: Int, offset: Int)
-    case getCharacterDetails(id: Int)
 }
 
 extension MarvelService: TargetType {
@@ -20,12 +19,7 @@ extension MarvelService: TargetType {
     }
 
     var path: String {
-        switch self {
-        case .getCharacters(_):
-            return "/v1/public/characters"
-        case .getCharacterDetails(let id):
-            return "/v1/public/characters/\(id)"
-        }
+        return "/v1/public/characters"
     }
 
     var method: Moya.Method {
@@ -45,12 +39,6 @@ extension MarvelService: TargetType {
                                         "apikey": KeyAccessBuilder.getPublicKey(),
                                         "limit": limit,
                                         "offset": offset], encoding: URLEncoding.queryString)
-        case .getCharacterDetails(let id):
-            return .requestParameters(parameters: [
-                                        "ts": KeyAccessBuilder.getTimeStamp(),
-                                        "hash": KeyAccessBuilder.getHash(),
-                                        "apikey": KeyAccessBuilder.getPublicKey(),
-                                        "characterId": id], encoding: URLEncoding.queryString)
         }
     }
 

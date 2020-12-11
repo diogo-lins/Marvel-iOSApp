@@ -8,6 +8,5 @@
 import Foundation
 
 protocol RemoteService {
-    func getCharacter(with limit: Int, and offset: Int)
-    func getCharacterDetails(with id: Int)
+    func getCharacters(with limit: Int, and offset: Int)
 }

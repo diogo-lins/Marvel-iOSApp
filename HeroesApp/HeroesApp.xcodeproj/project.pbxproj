@@ -18,6 +18,8 @@
 		933B9B512580F33800D62E45 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B502580F33800D62E45 /* Quick */; };
 		933B9B572580F39D00D62E45 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B562580F39D00D62E45 /* Nimble */; };
 		933B9B632580F5D700D62E45 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B622580F5D700D62E45 /* Moya */; };
+		936B797F25825EF400764618 /* JSONApiCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936B797E25825EF400764618 /* JSONApiCharacters.swift */; };
+		936B79842582C3F700764618 /* NetworkingJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936B79832582C3F700764618 /* NetworkingJSONDecoder.swift */; };
 		9394ED092581416A004EB4D1 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394ED082581416A004EB4D1 /* APIRequest.swift */; };
 		9394ED1125814195004EB4D1 /* MarvelAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394ED1025814195004EB4D1 /* MarvelAPIController.swift */; };
 		9394ED19258141DD004EB4D1 /* MarvelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394ED18258141DD004EB4D1 /* MarvelService.swift */; };
@@ -60,6 +62,8 @@
 		9317A34F257E969600E66497 /* HeroesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeroesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9317A353257E969600E66497 /* HeroesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesAppUITests.swift; sourceTree = "<group>"; };
 		9317A355257E969600E66497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		936B797E25825EF400764618 /* JSONApiCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONApiCharacters.swift; sourceTree = "<group>"; };
+		936B79832582C3F700764618 /* NetworkingJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingJSONDecoder.swift; sourceTree = "<group>"; };
 		9394ED082581416A004EB4D1 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		9394ED1025814195004EB4D1 /* MarvelAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIController.swift; sourceTree = "<group>"; };
 		9394ED18258141DD004EB4D1 /* MarvelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelService.swift; sourceTree = "<group>"; };
@@ -150,13 +154,21 @@
 			path = HeroesAppUITests;
 			sourceTree = "<group>";
 		};
+		936B7977258250BA00764618 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				936B797E25825EF400764618 /* JSONApiCharacters.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9394ED0525814128004EB4D1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				93AEC48025819C140077E938 /* KeyAccessBuilder.swift */,
 				939F3E8B257ED4BD001714F3 /* HeroDataAdapter.swift */,
 				9394ED1025814195004EB4D1 /* MarvelAPIController.swift */,
 				9394ED18258141DD004EB4D1 /* MarvelService.swift */,
-				93AEC48025819C140077E938 /* KeyAccessBuilder.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -173,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				9394ED082581416A004EB4D1 /* APIRequest.swift */,
+				936B79832582C3F700764618 /* NetworkingJSONDecoder.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -207,6 +220,7 @@
 		939F3E84257ED402001714F3 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				936B7977258250BA00764618 /* Models */,
 				9394ED072581414B004EB4D1 /* Protocols */,
 				9394ED0525814128004EB4D1 /* Classes */,
 			);
@@ -379,8 +393,10 @@
 				9317A334257E968E00E66497 /* SceneDelegate.swift in Sources */,
 				939F3E87257ED494001714F3 /* RemoteService.swift in Sources */,
 				9394ED092581416A004EB4D1 /* APIRequest.swift in Sources */,
+				936B797F25825EF400764618 /* JSONApiCharacters.swift in Sources */,
 				93AEC48125819C140077E938 /* KeyAccessBuilder.swift in Sources */,
 				9394ED19258141DD004EB4D1 /* MarvelService.swift in Sources */,
+				936B79842582C3F700764618 /* NetworkingJSONDecoder.swift in Sources */,
 				939F3E8C257ED4BD001714F3 /* HeroDataAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

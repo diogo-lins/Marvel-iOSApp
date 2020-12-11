@@ -20,8 +20,13 @@ struct MarvelAPIController: APIRequest {
         provider.request(.getCharacters(limit: limit, offset: offset)) { (result) in
             switch result {
             case .success(let response):
-                let json = try! JSONSerialization.jsonObject(with: response.data, options: [])
-                print(json)
+                //TODO Criar modelo Codable que faz seu proprio decode
+                do {
+                    let stub = try JSONApiCharacters.decoded(by: JSONDecoder(), from: response.data)
+                    print(stub)
+                } catch {
+                    
+                }
             case .failure(let error):
                 print(error)
             }
@@ -29,6 +34,17 @@ struct MarvelAPIController: APIRequest {
     }
 
     func getCharacterDetails(with id: Int) {
-        
+        provider.request(.getCharacterDetails(id: id)) { (result) in
+            switch result {
+            case .success(let response):
+                let json = try! JSONSerialization.jsonObject(with: response.data, options: [])
+                print(json)
+
+            //TODO Criar modelo Codable que faz seu proprio decode
+
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

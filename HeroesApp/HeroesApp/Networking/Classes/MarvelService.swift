@@ -10,7 +10,7 @@ import Moya
 
 enum MarvelService {
     case getCharacters(limit: Int, offset: Int)
-    case getCharracterDetails(id: Int)
+    case getCharacterDetails(id: Int)
 }
 
 extension MarvelService: TargetType {
@@ -23,7 +23,7 @@ extension MarvelService: TargetType {
         switch self {
         case .getCharacters(_):
             return "/v1/public/characters"
-        case .getCharracterDetails(let id):
+        case .getCharacterDetails(let id):
             return "/v1/public/characters/\(id)"
         }
     }
@@ -39,15 +39,18 @@ extension MarvelService: TargetType {
     var task: Task {
         switch self {
         case .getCharacters(let limit, let offset):
-            return .requestParameters(parameters: ["ts": KeyAccessBuilder.getTimeStamp(),
-                                                   "hash": KeyAccessBuilder.getHash(),
-                                                   "apikey": KeyAccessBuilder.getPublicKey(),
-                                                   "limit": limit,
-                                                   "offset": offset], encoding: URLEncoding.queryString)
-        case .getCharracterDetails(let id):
-            return .requestParameters(parameters: ["characterId": id,
-                                                   "hash": KeyAccessBuilder.getHash(),
-                                                   "apikey": KeyAccessBuilder.getPublicKey()], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: [
+                                        "ts": KeyAccessBuilder.getTimeStamp(),
+                                        "hash": KeyAccessBuilder.getHash(),
+                                        "apikey": KeyAccessBuilder.getPublicKey(),
+                                        "limit": limit,
+                                        "offset": offset], encoding: URLEncoding.queryString)
+        case .getCharacterDetails(let id):
+            return .requestParameters(parameters: [
+                                        "ts": KeyAccessBuilder.getTimeStamp(),
+                                        "hash": KeyAccessBuilder.getHash(),
+                                        "apikey": KeyAccessBuilder.getPublicKey(),
+                                        "characterId": id], encoding: URLEncoding.queryString)
         }
     }
 

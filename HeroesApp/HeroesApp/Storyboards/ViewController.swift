@@ -16,6 +16,9 @@ class ViewController: UIViewController {
 
         adapter = HeroDataAdapter()
         adapter?.getCharacter(with: 10, and: 1)
+
+        //adapter?.getCharacterDetails(with: 1017100)
+        
     }
 }
 

@@ -9,26 +9,33 @@ import Foundation
 import Moya
 
 struct MarvelAPIController: APIRequest {
+    private let provider: MoyaProvider<MarvelService>
 
-    var provider: MoyaProvider<MarvelService>
-
-    init() {
-        self.provider = MoyaProvider<MarvelService>()
+    init(provider: MoyaProvider<MarvelService> = MoyaProvider<MarvelService>()) {
+        self.provider = provider
     }
 
-    func getCharacter(with limit: Int, and offset: Int) {
-        provider.request(.getCharacters(limit: limit, offset: offset)) { (result) in
+    func getCharacters(
+        limit: Int,
+        offset: Int,
+        completion: @escaping (Result<JSONApiCharacters, Error>) -> Void
+    ) {
+        provider.request(.getCharacters(limit: limit, offset: offset)) { result in
             switch result {
             case .success(let response):
-                let json = try! JSONSerialization.jsonObject(with: response.data, options: [])
-                print(json)
+                do {
+                    let characters = try JSONApiCharacters.decoded(by: JSONDecoder(), from: response.data)
+                    completion(.success(characters))
+                } catch {
+                    completion(.failure(APIError.unableToDecodeData))
+                }
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }
 
     func getCharacterDetails(with id: Int) {
-        
+
     }
 }

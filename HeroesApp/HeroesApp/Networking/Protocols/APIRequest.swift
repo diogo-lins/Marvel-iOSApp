@@ -8,6 +8,9 @@
 import Foundation
 
 protocol APIRequest {
-    func getCharacter(with limit: Int, and offset: Int)
-    func getCharacterDetails(with id: Int)
+    func getCharacters(
+        limit: Int,
+        offset: Int,
+        completion: @escaping (Result<JSONApiCharacters, Error>) -> Void
+    )
 }

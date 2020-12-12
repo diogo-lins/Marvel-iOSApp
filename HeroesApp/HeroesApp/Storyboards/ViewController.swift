@@ -18,4 +18,3 @@ class ViewController: UIViewController {
         adapter?.getCharacters(with: 10, and: 1)
     }
 }
-

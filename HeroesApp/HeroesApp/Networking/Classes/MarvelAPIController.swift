@@ -34,8 +34,4 @@ struct MarvelAPIController: APIRequest {
             }
         }
     }
-
-    func getCharacterDetails(with id: Int) {
-
-    }
 }

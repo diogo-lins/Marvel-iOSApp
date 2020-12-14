@@ -1,3 +1,9 @@
+//
+//  JSONApiCharacters+Spec.swift
+//  HeroesAppTests
+//
+//  Created by Diogo Moreira on 10/12/20.
+//
 import Quick
 import Nimble
 import Foundation

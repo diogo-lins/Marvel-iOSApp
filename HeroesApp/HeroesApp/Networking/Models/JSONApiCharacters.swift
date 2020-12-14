@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct JSONApiCharacters: Decodable {
+struct JSONApiCharacters: Codable {
     let code: Int
     let status: String
     let data: CharacterData
@@ -17,7 +17,7 @@ struct JSONApiCharacters: Decodable {
     }
 }
 
-struct CharacterData: Decodable {
+struct CharacterData: Codable {
     let offset: Int
     let limit: Int
     let total: Int
@@ -25,13 +25,14 @@ struct CharacterData: Decodable {
     let results: [CharacterResult]
 }
 
-struct CharacterResult: Decodable {
+struct CharacterResult: Codable {
     let id: Int
     let name: String
+    let description: String
     let thumbnail: Thumbnail
 }
 
-struct Thumbnail: Decodable {
+struct Thumbnail: Codable {
     let path: String
     let ext: String
 

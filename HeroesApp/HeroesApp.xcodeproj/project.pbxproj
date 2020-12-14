@@ -18,6 +18,7 @@
 		933B9B572580F39D00D62E45 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B562580F39D00D62E45 /* Nimble */; };
 		933B9B632580F5D700D62E45 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 933B9B622580F5D700D62E45 /* Moya */; };
 		936B79842582C3F700764618 /* NetworkingJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936B79832582C3F700764618 /* NetworkingJSONDecoder.swift */; };
+		9392ACDC2586F09200CB3D4A /* NetworkingJSONDecoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392ACDB2586F09200CB3D4A /* NetworkingJSONDecoderMock.swift */; };
 		9394ED092581416A004EB4D1 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394ED082581416A004EB4D1 /* APIRequest.swift */; };
 		9394ED1125814195004EB4D1 /* MarvelAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394ED1025814195004EB4D1 /* MarvelAPIController.swift */; };
 		9394ED19258141DD004EB4D1 /* MarvelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9394ED18258141DD004EB4D1 /* MarvelService.swift */; };
@@ -66,6 +67,7 @@
 		9317A355257E969600E66497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		936B797E25825EF400764618 /* JSONApiCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONApiCharacters.swift; sourceTree = "<group>"; };
 		936B79832582C3F700764618 /* NetworkingJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingJSONDecoder.swift; sourceTree = "<group>"; };
+		9392ACDB2586F09200CB3D4A /* NetworkingJSONDecoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingJSONDecoderMock.swift; sourceTree = "<group>"; };
 		9394ED082581416A004EB4D1 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		9394ED1025814195004EB4D1 /* MarvelAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIController.swift; sourceTree = "<group>"; };
 		9394ED18258141DD004EB4D1 /* MarvelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelService.swift; sourceTree = "<group>"; };
@@ -162,6 +164,14 @@
 			path = HeroesAppUITests;
 			sourceTree = "<group>";
 		};
+		9392ACDA2586F04400CB3D4A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				9392ACDB2586F09200CB3D4A /* NetworkingJSONDecoderMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		9394ED0525814128004EB4D1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +249,7 @@
 		93A861672584F60200C340CC /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9392ACDA2586F04400CB3D4A /* Mocks */,
 				93AF24CA25850A7800AE59C1 /* Helpers */,
 				93A861682584F60E00C340CC /* Classes */,
 			);
@@ -461,6 +472,7 @@
 			files = (
 				93D9C8E6258571450054F163 /* MarvelService+Spec.swift in Sources */,
 				93CF8CF325841739001D9084 /* MarvelAPIController+Spec.swift in Sources */,
+				9392ACDC2586F09200CB3D4A /* NetworkingJSONDecoderMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

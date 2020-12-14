@@ -5,5 +5,6 @@
 //  Created by Diogo Moreira on 12/12/20.
 //
 enum APIError: Error {
+    case unableToConnectHost
     case unableToDecodeData
 }

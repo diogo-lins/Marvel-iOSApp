@@ -13,13 +13,15 @@ final class MarvelAPIControllerSpec: QuickSpec {
                 sut = MarvelAPIController(provider: MoyaProvider<MarvelService>(stubClosure: MoyaProvider.immediatelyStub))
             }
 
-            context("with success") {
-                it("should returns a JSONApiCharacters on completion from API") {
-                    var receivedMappedObject: JSONApiCharacters?
+            describe("getCharacters") {
+                context("with success") {
+                    it("decode a JSONApiCharacters model from API data") {
+                        var receivedMappedObject: JSONApiCharacters?
 
-                    sut.getCharacters(limit: 1, offset: 10) { result in
-                        if case .success(let characters) = result {
-                            receivedMappedObject = characters
+                        sut.getCharacters(limit: 1, offset: 10) { result in
+                            if case .success(let characters) = result {
+                                receivedMappedObject = characters
+                            }
                         }
 
                         expect(receivedMappedObject?.data.results.count).to(equal(5))
@@ -27,32 +29,53 @@ final class MarvelAPIControllerSpec: QuickSpec {
                         expect(receivedMappedObject?.data.results.first?.name).to(equal("3-D Man"))
                     }
                 }
-            }
 
-            context("with API error") {
-                it("should returns a error to try decode data") {
-                    let customEndpointClosure = { (target: MarvelService) -> Endpoint in
-                        return Endpoint(url: URL(target: target).absoluteString,
-                                        sampleResponseClosure: { .networkResponse(401 , Data()) },
-                                        method: target.method,
-                                        task: target.task,
-                                        httpHeaderFields: target.headers)
-                    }
+                context("with failure") {
+                    context("when API fails and returnnn 401") {
+                        it("returns a error to try decode data") {
+                            let customEndpointClosure = { (target: MarvelService) -> Endpoint in
+                                return Endpoint(url: URL(target: target).absoluteString,
+                                                sampleResponseClosure: { .networkError(NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo: nil)) },
+                                                method: target.method,
+                                                task: target.task,
+                                                httpHeaderFields: target.headers)
+                            }
 
-                    sut = MarvelAPIController(provider: MoyaProvider<MarvelService>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub))
+                            sut = MarvelAPIController(provider: MoyaProvider<MarvelService>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub))
 
-                    var receivedError: Error?
+                            var receivedError: Error?
 
-                    sut.getCharacters(limit: 1, offset: 10) { result in
-                        if case .failure(let error) = result {
-                            receivedError = error
+                            sut.getCharacters(limit: 1, offset: 10) { result in
+                                if case .failure(let error) = result {
+                                    receivedError = error
+                                }
+                            }
+
+                            expect(receivedError).toNot(beNil())
+                            expect(receivedError).to(matchError(APIError.unableToConnectHost))
                         }
                     }
 
-                    expect(receivedError).toNot(beNil())
-                    expect(receivedError).to(matchError(APIError.unableToDecodeData))
-                }
+                    context("when decoding fails") {
+                        it("throws the received error") {
+                            sut = MarvelAPIController(
+                                provider: MoyaProvider<MarvelService>(stubClosure: MoyaProvider.immediatelyStub),
+                                decoder: NetworkingJSONDecoderMockFailure()
+                            )
 
+                            var receivedError: Error?
+
+                            sut.getCharacters(limit: 1, offset: 10) { result in
+                                if case .failure(let error) = result {
+                                    receivedError = error
+                                }
+                            }
+
+                            expect(receivedError).toNot(beNil())
+                            expect(receivedError).to(matchError(APIError.unableToDecodeData))
+                        }
+                    }
+                }
             }
         }
     }

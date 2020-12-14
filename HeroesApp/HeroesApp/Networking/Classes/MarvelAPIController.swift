@@ -9,10 +9,16 @@ import Foundation
 import Moya
 
 struct MarvelAPIController: APIRequest {
-    private let provider: MoyaProvider<MarvelService>
 
-    init(provider: MoyaProvider<MarvelService> = MoyaProvider<MarvelService>()) {
+    private let provider: MoyaProvider<MarvelService>
+    private let decoder: NetworkingJSONDecoder
+
+    init(
+        provider: MoyaProvider<MarvelService> = MoyaProvider<MarvelService>(),
+        decoder: NetworkingJSONDecoder = JSONDecoder()
+    ) {
         self.provider = provider
+        self.decoder = decoder
     }
 
     func getCharacters(
@@ -24,13 +30,13 @@ struct MarvelAPIController: APIRequest {
             switch result {
             case .success(let response):
                 do {
-                    let characters = try JSONApiCharacters.decoded(by: JSONDecoder(), from: response.data)
+                    let characters = try JSONApiCharacters.decoded(by: decoder, from: response.data)
                     completion(.success(characters))
                 } catch {
                     completion(.failure(APIError.unableToDecodeData))
                 }
-            case .failure(let error):
-                completion(.failure(error))
+            case .failure(_):
+                completion(.failure(APIError.unableToConnectHost))
             }
         }
     }
